@@ -7,14 +7,7 @@ export default function ProjectsIndexPage() {
       </p>
 
       {/* Placeholder grid, like your skeletons */}
-      <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <div
-            key={i}
-            className="h-28 rounded-lg bg-gray-100 dark:bg-neutral-800"
-          />
-        ))}
-      </div>
+      <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2"></div>
     </div>
   );
 }
