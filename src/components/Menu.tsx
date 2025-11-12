@@ -63,7 +63,8 @@ export function Menu() {
       icon: (
         <IconBrandGithub className="h-full w-full text-neutral-700 dark:text-neutral-200" />
       ),
-      href: "#",
+      href: "https://github.com/brutalvik",
+      external: true,
     },
   ];
 

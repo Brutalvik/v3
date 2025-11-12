@@ -12,7 +12,12 @@ import {
 } from "motion/react";
 import { useRef, useState } from "react";
 
-type DockItem = { title: string; icon: React.ReactNode; href: string };
+export type DockItem = {
+  title: string;
+  icon: React.ReactNode;
+  href: string;
+  external?: boolean; // open in new tab if true
+};
 
 export const FloatingDock = ({
   items,
@@ -35,54 +40,58 @@ const FloatingDockMobile = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
+  items: DockItem[];
   className?: string;
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <div className={cn("relative block md:hidden", className)}>
-      {/* Only the popout is managed by AnimatePresence */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            key="dock-popout" // ✅ key the animated child
+            key="dock-popout"
             layoutId="nav"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 6 }}
             className="absolute inset-x-0 bottom-full mb-2 flex flex-col gap-2"
           >
-            {items.map((item, idx) => (
-              <motion.div
-                key={`${item.href}-${idx}`} // ✅ unique map keys
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: { delay: idx * 0.05 },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-              >
-                <a
-                  href={item.href}
-                  className={cn(
-                    "flex h-10 w-10 items-center justify-center rounded-full",
-                    "bg-white/20 dark:bg-white/10 backdrop-blur-md",
-                    "border border-white/30 dark:border-white/10",
-                    "shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_6px_20px_rgba(0,0,0,0.18)]"
-                  )}
+            {items.map((item, idx) => {
+              const isExternal =
+                item.external ?? /^https?:\/\//i.test(item.href);
+              return (
+                <motion.div
+                  key={`${item.href}-${idx}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{
+                    opacity: 0,
+                    y: 10,
+                    transition: { delay: idx * 0.05 },
+                  }}
+                  transition={{ delay: (items.length - 1 - idx) * 0.05 }}
                 >
-                  <div className="h-4 w-4">{item.icon}</div>
-                </a>
-              </motion.div>
-            ))}
+                  <a
+                    href={item.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    className={cn(
+                      "flex h-10 w-10 items-center justify-center rounded-full",
+                      "bg-white/20 dark:bg-white/10 backdrop-blur-md",
+                      "border border-white/30 dark:border-white/10",
+                      "shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_6px_20px_rgba(0,0,0,0.18)]"
+                    )}
+                  >
+                    <div className="h-4 w-4">{item.icon}</div>
+                  </a>
+                </motion.div>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Keep the toggle button OUTSIDE AnimatePresence */}
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -115,14 +124,12 @@ const FloatingDockDesktop = ({
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
         "relative mx-auto hidden h-16 items-end gap-4 rounded-2xl px-4 pb-3 md:flex",
-        // glass container
         "bg-white/10 dark:bg-white/5 backdrop-blur-xl",
         "ring-1 ring-white/20 dark:ring-white/10",
         "shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_10px_30px_rgba(0,0,0,0.2)]",
         className
       )}
     >
-      {/* glossy top highlight */}
       <div className="pointer-events-none absolute inset-0 rounded-2xl [mask-image:linear-gradient(to_bottom,black,transparent_60%)]">
         <div className="h-1/2 rounded-t-2xl bg-white/20 dark:bg-white/10" />
       </div>
@@ -139,11 +146,13 @@ function IconContainer({
   title,
   icon,
   href,
+  external,
 }: {
   mouseX: MotionValue<number>;
   title: string;
   icon: React.ReactNode;
   href: string;
+  external?: boolean;
 }) {
   let ref = useRef<HTMLDivElement>(null);
 
@@ -184,8 +193,14 @@ function IconContainer({
 
   const [hovered, setHovered] = useState(false);
 
+  const isExternal = external ?? /^https?:\/\//i.test(href);
+
   return (
-    <a href={href}>
+    <a
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+    >
       <motion.div
         ref={ref}
         style={{ width, height }}
@@ -193,7 +208,6 @@ function IconContainer({
         onMouseLeave={() => setHovered(false)}
         className={cn(
           "relative flex aspect-square items-center justify-center rounded-full",
-          // glass chip
           "bg-white/20 dark:bg-white/10 backdrop-blur-md",
           "border border-white/30 dark:border-white/10",
           "shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_6px_20px_rgba(0,0,0,0.18)]"
