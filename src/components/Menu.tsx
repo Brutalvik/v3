@@ -1,41 +1,45 @@
-import React from "react";
 import { FloatingDock, type DockItem } from "@/components/ui/floating-dock";
-import { IconExchange } from "@tabler/icons-react";
-import { FcHome, FcTemplate, FcTimeline } from "react-icons/fc";
+import { TbTimeline } from "react-icons/tb";
+import { FaHome } from "react-icons/fa";
+import { MdWorkHistory } from "react-icons/md";
+import { FaLinkedin, FaGithub } from "react-icons/fa6";
 
 export function Menu() {
   const links: DockItem[] = [
     {
       title: "Home",
       icon: (
-        <FcHome className="h-full w-full text-neutral-700 dark:text-neutral-200" />
+        <FaHome className="h-full w-full text-neutral-700 dark:text-neutral-200" />
       ),
       href: "/",
     },
     {
       title: "Timeline",
       icon: (
-        <FcTimeline className="h-full w-full text-neutral-700 dark:text-neutral-200" />
+        <TbTimeline className="h-full w-full text-neutral-700 dark:text-neutral-200" />
       ),
       href: "#",
     },
     {
       title: "Projects",
       icon: (
-        <FcTemplate className="h-full w-full text-neutral-700 dark:text-neutral-200" />
+        <MdWorkHistory className="h-full w-full text-neutral-700 dark:text-neutral-200" />
       ),
       href: "/projects",
     },
     {
-      title: "Changelog",
+      title: "LinkedIn",
       icon: (
-        <IconExchange className="h-full w-full text-neutral-700 dark:text-neutral-200" />
+        <FaLinkedin className="h-full w-full text-neutral-700 dark:text-neutral-200" />
       ),
-      href: "#",
+      href: "https://www.linkedin.com/in/vbytes/",
+      external: true, // opens in new tab
     },
     {
       title: "GitHub",
-      icon: <img src="github.png" width={30} height={30} alt="Github" />,
+      icon: (
+        <FaGithub className="h-full w-full text-neutral-700 dark:text-neutral-200" />
+      ),
       href: "https://github.com/brutalvik",
       external: true, // opens in new tab
     },
