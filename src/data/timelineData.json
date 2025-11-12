@@ -1,0 +1,188 @@
+[
+  {
+    "id": "goa-2023-2025",
+    "type": "experience",
+    "title": "2023 – 2025 • Government of Alberta, Calgary",
+    "summary": "Senior Software Developer — Designed secure, cloud-native Angular + NestJS solutions on Azure for provincial services.",
+    "bullets": [
+      "Built enterprise-grade Angular frontends (RxJS, NgRx, lazy loading) with Tailwind CSS and WCAG-compliant UIs.",
+      "Designed microservices on AKS and Azure Functions using Node.js/NestJS, GraphQL, TypeORM and Prisma.",
+      "Maintained financial pipelines with Prisma, Cosmos DB and Redis using DTOs, class-validator and repository patterns.",
+      "Secured applications using Azure AD, OAuth2, OpenID Connect, RBAC and Azure API Management.",
+      "Automated infra and CI/CD with Azure DevOps Pipelines, Terraform and multi-stage YAML workflows.",
+      "Implemented async messaging with Azure Service Bus, DLQs and event-driven workflows.",
+      "Monitored performance via Azure Monitor, App Insights, Log Analytics and KQL dashboards.",
+      "Streamlined development with Nx monorepo, Husky, ESLint, Stylelint and GitHub Actions."
+    ],
+    "tags": [
+      {
+        "heading": "Frontend",
+        "text": "Angular, TypeScript, Tailwind, SCSS, RxJS, NgRx"
+      },
+      {
+        "heading": "Backend & APIs",
+        "text": "NestJS, Node.js, GraphQL, REST, Azure Functions, AKS"
+      },
+      {
+        "heading": "Data & Messaging",
+        "text": "Prisma, Cosmos DB, Redis, Azure Service Bus"
+      },
+      {
+        "heading": "DevOps & Observability",
+        "text": "Azure DevOps, Terraform, App Insights, KQL, Nx"
+      }
+    ]
+  },
+  {
+    "id": "gsts-2023",
+    "type": "experience",
+    "title": "2023 • GSTS, Halifax (Remote)",
+    "summary": "Senior Software Developer (Fullstack Remote) — Built event-driven and GIS-enabled solutions across AWS, Spring Boot and Node.js.",
+    "bullets": [
+      "Transitioned monolithic Express backend to cost-efficient, event-driven AWS Lambda architecture.",
+      "Designed hybrid Java Spring Boot microservices and Node.js Lambdas for real-time and compute-heavy workloads.",
+      "Managed secure data with DynamoDB and S3, using Spring Boot, Spring Data and AWS SDKs.",
+      "Implemented fine-grained access using IAM and Cognito with OAuth2 and hosted UIs.",
+      "Built GIS frontends using React, Leaflet.js and Mapbox for real-time spatial data.",
+      "Synced vessel data in real time using AWS AppSync, Lambda and Spring Boot GraphQL gateways.",
+      "Implemented PDF/CSV import/export workflows via S3 and hybrid pipelines.",
+      "Ensured reliability with Jest, JUnit, Mockito and Cypress in AWS-native environments."
+    ],
+    "tags": [
+      {
+        "heading": "Cloud & Runtime",
+        "text": "AWS Lambda, DynamoDB, S3, SNS, AppSync"
+      },
+      {
+        "heading": "Backend",
+        "text": "Spring Boot, Node.js, GraphQL, REST"
+      },
+      {
+        "heading": "Frontend",
+        "text": "React, Leaflet.js, Mapbox"
+      },
+      {
+        "heading": "Quality & CI/CD",
+        "text": "Jest, JUnit, Mockito, Cypress, CodePipeline, GitHub Actions"
+      }
+    ]
+  },
+  {
+    "id": "ibm-2022-2023",
+    "type": "experience",
+    "title": "2022 – 2023 • IBM, Calgary",
+    "summary": "Application Developer (Fullstack) — Delivered large-scale solutions for Air Canada & TD Bank using React, AWS and Azure.",
+    "bullets": [
+      "Mentored in React, npm and TypeScript, refactoring legacy code for performance and maintainability.",
+      "Architected backends with AWS Lambda, API Gateway, DynamoDB and Cognito for secure serverless APIs.",
+      "Implemented Webpack 5 module federation to modularize frontends and share components.",
+      "Built React UIs for TD Bank with TypeScript, GraphQL, Redux Toolkit, custom hooks and Jest.",
+      "Integrated GraphQL clients (graphql-request, Apollo) with Azure-hosted APIs.",
+      "Automated CI/CD pipelines using GitHub Actions, AWS Amplify and Azure DevOps.",
+      "Ensured quality with Jest, React Testing Library, Supertest and CI coverage."
+    ],
+    "tags": [
+      {
+        "heading": "Frontend",
+        "text": "React, TypeScript, Redux Toolkit, Jest"
+      },
+      {
+        "heading": "AWS",
+        "text": "Lambda, API Gateway, DynamoDB, Cognito, Step Functions"
+      },
+      {
+        "heading": "Azure",
+        "text": "App Service, AKS, API Management, Logic Apps"
+      },
+      {
+        "heading": "Architecture",
+        "text": "Microfrontends, module federation, event-driven design"
+      }
+    ]
+  },
+  {
+    "id": "inovi-2015-2020",
+    "type": "experience",
+    "title": "2015 – 2020 • Inovi Technologies",
+    "summary": "Senior Software Developer — Built serverless, microservice-heavy platforms on AWS with Angular, React and TypeScript.",
+    "bullets": [
+      "Built scalable serverless apps using AWS Lambda, API Gateway and Amplify.",
+      "Optimized Angular and React front-end performance on S3 + CloudFront.",
+      "Implemented microservices with Step Functions, SQS and event-driven architecture.",
+      "Secured admin portals using Cognito (MFA, federated identities), Secrets Manager and IAM.",
+      "Used DynamoDB for low-latency NoSQL and S3 for content with fine-grained access policies.",
+      "Automated CI/CD pipelines via CodePipeline, CodeBuild, CodeDeploy and CloudFormation/SAM.",
+      "Traced and debugged using CloudWatch and X-Ray for Lambda latencies and async flows."
+    ],
+    "tags": [
+      {
+        "heading": "Frontend",
+        "text": "Angular, React, TypeScript"
+      },
+      {
+        "heading": "Serverless & Data",
+        "text": "Lambda, API Gateway, DynamoDB, S3"
+      },
+      {
+        "heading": "Security",
+        "text": "Cognito, IAM, Secrets Manager"
+      },
+      {
+        "heading": "CI/CD & IaC",
+        "text": "CodePipeline, CodeBuild, CodeDeploy, SAM, CloudFormation"
+      }
+    ]
+  },
+  {
+    "id": "softbrij-2011-2015",
+    "type": "experience",
+    "title": "2011 – 2015 • SoftBrij IT Solutions",
+    "summary": "Software Developer — Full-stack delivery for internal and customer-facing apps on Azure and AWS.",
+    "bullets": [
+      "Built Node.js/Express REST APIs for high-traffic AngularJS frontends on Azure Web Apps.",
+      "Developed automation tools in Node.js to improve QA and uptime, integrated with App Insights.",
+      "Optimized Azure API Management endpoints and SQL Database for high-load dashboards.",
+      "Delivered mobile-optimized AngularJS UIs hosted on S3, accelerated via CloudFront and ELB.",
+      "Implemented CI/CD pipelines using Azure DevOps Services and AWS Elastic Beanstalk.",
+      "Provided real-time operational visibility using CloudWatch Logs and Azure Log Analytics."
+    ],
+    "tags": [
+      {
+        "heading": "Backend",
+        "text": "Node.js, Express, REST APIs"
+      },
+      {
+        "heading": "Frontend",
+        "text": "AngularJS, SPA, mobile-first UIs"
+      },
+      {
+        "heading": "Azure",
+        "text": "Web Apps, API Management, SQL DB, App Insights"
+      },
+      {
+        "heading": "AWS",
+        "text": "EC2, S3, CloudFront, Lambda, RDS, CloudWatch"
+      }
+    ]
+  },
+  {
+    "id": "education",
+    "type": "education",
+    "title": "Education",
+    "summary": "Strong foundation in Computer Science with specialized training in modern mobile and web development.",
+    "bullets": [
+      "Mobile Applications and Web Development — TAV College, Montreal, Canada (02 Feb 2020 – 24 Jan 2022).",
+      "B.Tech in Computer Science & Engineering — All India Institute of Technology (09 Jun 2007 – 10 May 2011, EQF Level 6)."
+    ],
+    "tags": [
+      {
+        "heading": "Core Skills",
+        "text": "Algorithms, Data Structures, OS, DBMS"
+      },
+      {
+        "heading": "Applied Skills",
+        "text": "Modern web, mobile and cloud-native development"
+      }
+    ]
+  }
+]
