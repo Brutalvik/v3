@@ -1,8 +1,9 @@
 // app/page.tsx
 "use client";
 
-import { FlipWords } from "@/components/ui/flip-words";
 import Link from "next/link";
+import { FlipWords } from "@/components/ui/flip-words";
+import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 
 export default function HomePage() {
   const words = [
@@ -20,26 +21,16 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="min-h-screen text-foreground flex flex-col">
-      {/* Simple top bar */}
-      <header className="w-full px-6 py-4 flex items-center justify-between border-b border-border">
+    <main className="min-h-screen text-foreground flex flex-col cursor-pointer">
+      {/* Glassy top bar */}
+      <header className="w-full px-6 py-4 flex items-center justify-between backdrop-blur-xl">
         <span className="text-sm font-mono tracking-tight">V-Bytes</span>
-        <nav className="flex items-center gap-4 text-xs sm:text-sm text-muted-foreground">
-          <Link href="#about" className="hover:text-foreground transition">
-            About
-          </Link>
-          <Link href="#work" className="hover:text-foreground transition">
-            Work
-          </Link>
-          <Link href="#contact" className="hover:text-foreground transition">
-            Contact
-          </Link>
-        </nav>
       </header>
 
       {/* Centered hero */}
       <section className="flex-1 flex items-center justify-center px-6">
-        <div className="max-w-xl w-full">
+        <BackgroundRippleEffect />
+        <div className="max-w-xl w-full relative">
           <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">
             <FlipWords words={words} />
           </div>
@@ -92,8 +83,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Tiny footer */}
-      <footer className="w-full px-6 py-4 text-[11px] sm:text-xs text-muted-foreground border-t border-border flex justify-between items-center">
+      {/* Glassy footer */}
+      <footer
+        className="w-full px-6 py-4 text-[11px] sm:text-xs text-muted-foreground
+                   border-t border-border/60 bg/60 backdrop-blur-xl
+                   flex justify-between items-center"
+      >
         <span>© {new Date().getFullYear()} V-Bytes</span>
         <span>Calgary · AB · Canada</span>
       </footer>
