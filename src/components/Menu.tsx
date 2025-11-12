@@ -20,13 +20,13 @@ export function Menu() {
       ),
       href: "/timeline",
     },
-    {
-      title: "Projects",
-      icon: (
-        <MdWorkHistory className="h-full w-full text-neutral-700 dark:text-neutral-200" />
-      ),
-      href: "/projects",
-    },
+    // {
+    //   title: "Projects",
+    //   icon: (
+    //     <MdWorkHistory className="h-full w-full text-neutral-700 dark:text-neutral-200" />
+    //   ),
+    //   href: "/projects",
+    // },
     {
       title: "LinkedIn",
       icon: (
