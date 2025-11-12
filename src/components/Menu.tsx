@@ -1,5 +1,5 @@
 import React from "react";
-import { FloatingDock } from "@/components/ui/floating-dock";
+import { FloatingDock, type DockItem } from "@/components/ui/floating-dock";
 import {
   IconBrandGithub,
   IconBrandX,
@@ -8,39 +8,29 @@ import {
   IconNewSection,
   IconTerminal2,
 } from "@tabler/icons-react";
+import { FcHome, FcTemplate, FcTimeline } from "react-icons/fc";
+import github from "../assets/github.png";
 
 export function Menu() {
-  const links = [
+  const links: DockItem[] = [
     {
       title: "Home",
       icon: (
-        <IconHome className="h-full w-full text-neutral-700 dark:text-neutral-200" />
+        <FcHome className="h-full w-full text-neutral-700 dark:text-neutral-200" />
+      ),
+      href: "/",
+    },
+    {
+      title: "Timeline",
+      icon: (
+        <FcTimeline className="h-full w-full text-neutral-700 dark:text-neutral-200" />
       ),
       href: "#",
     },
     {
-      title: "Products",
+      title: "Projects",
       icon: (
-        <IconTerminal2 className="h-full w-full text-neutral-700 dark:text-neutral-200" />
-      ),
-      href: "#",
-    },
-    {
-      title: "Components",
-      icon: (
-        <IconNewSection className="h-full w-full text-neutral-700 dark:text-neutral-200" />
-      ),
-      href: "#",
-    },
-    {
-      title: "Aceternity UI",
-      icon: (
-        <img
-          src="https://assets.aceternity.com/logo-dark.png"
-          width={20}
-          height={20}
-          alt="Aceternity Logo"
-        />
+        <FcTemplate className="h-full w-full text-neutral-700 dark:text-neutral-200" />
       ),
       href: "#",
     },
@@ -52,19 +42,10 @@ export function Menu() {
       href: "#",
     },
     {
-      title: "Twitter",
-      icon: (
-        <IconBrandX className="h-full w-full text-neutral-700 dark:text-neutral-200" />
-      ),
-      href: "#",
-    },
-    {
       title: "GitHub",
-      icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-700 dark:text-neutral-200" />
-      ),
+      icon: <img src="github.png" width={30} height={30} alt="Github" />,
       href: "https://github.com/brutalvik",
-      external: true,
+      external: true, // opens in new tab
     },
   ];
 
@@ -72,21 +53,17 @@ export function Menu() {
     <div
       className="
         fixed z-50
-        bottom-6 right-6                 /* mobile: bottom-right */
-        md:bottom-6 md:left-1/2          /* md+: bottom-center */
+        bottom-6 right-6
+        md:bottom-6 md:left-1/2
         md:-translate-x-1/2 md:right-auto
         pointer-events-auto
       "
-      style={{
-        // keeps it above iOS home indicator
-        marginBottom: "env(safe-area-inset-bottom, 0px)",
-      }}
+      style={{ marginBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
       <FloatingDock
         items={links}
-        // optional: tweak spacing per viewport
-        mobileClassName="" // your mobile FAB layout
-        desktopClassName="shadow-lg" // any extra desktop styles
+        mobileClassName=""
+        desktopClassName="shadow-lg"
       />
     </div>
   );

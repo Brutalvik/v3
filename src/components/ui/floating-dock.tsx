@@ -16,7 +16,7 @@ export type DockItem = {
   title: string;
   icon: React.ReactNode;
   href: string;
-  external?: boolean; // open in new tab if true
+  external?: boolean; // open in a new tab if true
 };
 
 export const FloatingDock = ({
@@ -80,10 +80,13 @@ const FloatingDockMobile = ({
                       "flex h-10 w-10 items-center justify-center rounded-full",
                       "bg-white/20 dark:bg-white/10 backdrop-blur-md",
                       "border border-white/30 dark:border-white/10",
-                      "shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_6px_20px_rgba(0,0,0,0.18)]"
+                      "shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_6px_20px_rgba(0,0,0,0.18)]",
+                      "[will-change:width,height]"
                     )}
                   >
-                    <div className="h-4 w-4">{item.icon}</div>
+                    <div className="h-4 w-4 [will-change:width,height]">
+                      {item.icon}
+                    </div>
                   </a>
                 </motion.div>
               );
@@ -115,7 +118,8 @@ const FloatingDockDesktop = ({
   items: DockItem[];
   className?: string;
 }) => {
-  let mouseX = useMotionValue(Infinity);
+  // Keep original behavior: track pageX and reset to Infinity on leave
+  const mouseX = useMotionValue(Infinity);
 
   return (
     <motion.div
@@ -154,45 +158,46 @@ function IconContainer({
   href: string;
   external?: boolean;
 }) {
-  let ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  let distance = useTransform(mouseX, (val) => {
-    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-    return val - bounds.x - bounds.width / 2;
+  // Same distance calc (center of bubble)
+  const distance = useTransform(mouseX, (val) => {
+    const b = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - (b.x + b.width / 2);
   });
 
-  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-  let heightTransformIcon = useTransform(
+  // Keep original mapping ranges & sizes
+  const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  const widthTransformIcon = useTransform(
+    distance,
+    [-150, 0, 150],
+    [20, 40, 20]
+  );
+  const heightTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
     [20, 40, 20]
   );
 
-  let width = useSpring(widthTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
-  let height = useSpring(heightTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
-  let widthIcon = useSpring(widthTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
-  let heightIcon = useSpring(heightTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
+  // 🚀 SNAPPY SPRINGS — only change
+  // - Very low mass + very high stiffness → reacts immediately
+  // - Slightly lower damping to prevent “sticky” feeling
+  // - Aggressive rest thresholds to stop computing ASAP
+  const springCfg = {
+    mass: 0.045,
+    stiffness: 1600,
+    damping: 22,
+    restDelta: 0.0005,
+    restSpeed: 120,
+  };
+
+  const width = useSpring(widthTransform, springCfg);
+  const height = useSpring(heightTransform, springCfg);
+  const widthIcon = useSpring(widthTransformIcon, springCfg);
+  const heightIcon = useSpring(heightTransformIcon, springCfg);
 
   const [hovered, setHovered] = useState(false);
-
   const isExternal = external ?? /^https?:\/\//i.test(href);
 
   return (
@@ -203,14 +208,15 @@ function IconContainer({
     >
       <motion.div
         ref={ref}
-        style={{ width, height }}
+        style={{ width, height }} // ← still animating size (behavior unchanged)
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className={cn(
           "relative flex aspect-square items-center justify-center rounded-full",
           "bg-white/20 dark:bg-white/10 backdrop-blur-md",
           "border border-white/30 dark:border-white/10",
-          "shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_6px_20px_rgba(0,0,0,0.18)]"
+          "shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_6px_20px_rgba(0,0,0,0.18)]",
+          "[will-change:width,height]" // hint layout changes
         )}
       >
         <AnimatePresence initial={false}>
@@ -232,8 +238,8 @@ function IconContainer({
         </AnimatePresence>
 
         <motion.div
-          style={{ width: widthIcon, height: heightIcon }}
-          className="flex items-center justify-center"
+          style={{ width: widthIcon, height: heightIcon }} // icon size follows bubble
+          className="flex items-center justify-center [will-change:width,height]"
         >
           {icon}
         </motion.div>
