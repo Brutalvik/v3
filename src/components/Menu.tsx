@@ -1,15 +1,7 @@
 import React from "react";
 import { FloatingDock, type DockItem } from "@/components/ui/floating-dock";
-import {
-  IconBrandGithub,
-  IconBrandX,
-  IconExchange,
-  IconHome,
-  IconNewSection,
-  IconTerminal2,
-} from "@tabler/icons-react";
+import { IconExchange } from "@tabler/icons-react";
 import { FcHome, FcTemplate, FcTimeline } from "react-icons/fc";
-import github from "../assets/github.png";
 
 export function Menu() {
   const links: DockItem[] = [
@@ -32,7 +24,7 @@ export function Menu() {
       icon: (
         <FcTemplate className="h-full w-full text-neutral-700 dark:text-neutral-200" />
       ),
-      href: "#",
+      href: "/projects",
     },
     {
       title: "Changelog",

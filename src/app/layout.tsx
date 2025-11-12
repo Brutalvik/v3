@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import ClientOnly from "@/components/ClientOnly";
+import { Menu } from "@/components/Menu";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -32,6 +34,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ClientOnly>
+            <Menu />
+          </ClientOnly>
           {children}
         </ThemeProvider>
       </body>
