@@ -20,10 +20,12 @@ export default function HomePage() {
     "Scalable Systems Engineer",
   ];
 
+  const year = new Date().getFullYear();
+
   return (
     <main className="min-h-screen text-foreground flex flex-col cursor-pointer">
-      {/* Glassy top bar */}
-      <header className="w-full px-6 py-4 flex items-center justify-between backdrop-blur-xl">
+      {/* 🧊 Glassy top bar */}
+      <header className="w-full px-6 py-4.5 flex items-center justify-between border-b border-white/10 dark:border-white/5 bg/40 dark:bg/10 backdrop-blur-2xl supports-[backdrop-filter]:bg/30 shadow-sm shadow-black/10">
         <span className="text-sm font-mono tracking-tight">V-Bytes</span>
       </header>
 
@@ -83,13 +85,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Glassy footer */}
-      <footer
-        className="w-full px-6 py-4 text-[11px] sm:text-xs text-muted-foreground
-                   border-t border-border/60 bg/60 backdrop-blur-xl
-                   flex justify-between items-center"
-      >
-        <span>© {new Date().getFullYear()} V-Bytes</span>
+      {/* 🧊 Glassy footer */}
+      <footer className="w-full px-6 py-4 text-[11px] sm:text-xs text-muted-foreground border-t border-white/10 dark:border-white/5 bg/40 dark:bg/10 backdrop-blur-2xl supports-[backdrop-filter]:bg/30 shadow-[0_-1px_8px_rgba(0,0,0,0.25)] flex justify-between items-center">
+        <span>© {year} V-Bytes</span>
         <span>Calgary · AB · Canada</span>
       </footer>
     </main>
