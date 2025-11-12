@@ -57,12 +57,12 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-wrap items-center gap-3 mb-8">
-            {/* <Link
+            <Link
               href="#work"
               className="text-xs sm:text-sm px-4 py-2 rounded-full border border-foreground/20 hover:border-foreground/60 hover:bg-foreground/5 transition"
             >
-              View work
-            </Link> */}
+              Download Resume
+            </Link>
             <Link
               href="#contact"
               className="text-xs sm:text-sm px-4 py-2 rounded-full border border-border text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition"
